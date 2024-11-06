@@ -1,11 +1,14 @@
 # Project 3: Parallel Matrix Multiplication
-Due Date: November 10, 2024
-
 Overview
-This project focuses on implementing and analyzing two parallel algorithms for multiplying large square matrices on a parallel computer. The algorithms chosen are the Cannon’s Algorithm and the Fox Algorithm. Each algorithm is tested with matrices of various sizes and on systems with different numbers of CPU cores to assess performance and scalability.
+This project focuses on implementing and analyzing two parallel algorithms for multiplying large square matrices in parallel: Cannon and Fox. Each algorithm will be briefly described, implemented, and checked for performance on varying matrix and processor sizes.
 
 Algorithms
-Cannon’s Algorithm: This method is designed for distributed matrix multiplication, specifically suited for a mesh topology. Cannon’s Algorithm is efficient for minimizing inter-process communication, making it ideal for systems with high communication overheads.
+Cannons Algorithm: A parallel matrix multiplication method designed for use on a 𝑃 × 𝑃 grid of processors, ideally suited for square matrices distributed across a mesh topology. 
+
+1) Scatter submatrices of size N / \sqrt(P) to grid of PxP processors.
+2) Shift submatrices of matrix A to the left processor in the same row dimension with wrap-around. Similarly shift submatrices of matrix B up in the same column dimension with wrap-around.
+3) For \sqrt(P) stages perform matrix multiplication between submatrices on each process, then shift submatrices of A left and submatrices of B up.
+4) Gather results.
 
 Fox Algorithm: An alternative approach for matrix multiplication on a mesh grid of processors. The Fox Algorithm is particularly suited for matrices distributed across a square grid and leverages a broadcast mechanism to optimize computation steps in parallel environments.
 
