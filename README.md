@@ -24,9 +24,9 @@ This project focuses on implementing and analyzing two parallel algorithms for m
 1. **Scatter** submatrices of $\( B \)$ with size $\( \frac{N}{\sqrt{P}} \)$ to a grid of $\( \sqrt{P} \times \sqrt{P} \)$ processors.
 
 2. **Iteration over Stages**:
-   - For diagonal stage \( k = 0, 1, \dots, \sqrt{P} - 1 \):
+   - For diagonal stage $\( k = 0, 1, \dots, \sqrt{P} - 1 \)$:
      - **Broadcast Step**: 
-       - The main diagonal processor on $row_\( i \)$ receives $row_\( i \)$ of the $\( k \)$-th diagonal submatrix of $\( A \)$, then broadcasts that submatrix to all processors in that row.
+       - The main diagonal processor on $row_i$ receives $row_i$ of the $\( k \)$-th diagonal submatrix of $\( A \)$, then broadcasts that submatrix to all processors in that row.
      - **Local Multiplication**:
        - Each processor performs local matrix multiplication between the received submatrix of $\( A \)$ and its submatrix of $\( B \)$.
      - **Shift Step**:
