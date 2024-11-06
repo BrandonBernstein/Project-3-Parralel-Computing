@@ -7,7 +7,7 @@ This project focuses on implementing and analyzing two parallel algorithms for m
 
 **Cannon’s Algorithm:** A parallel matrix multiplication method designed for use on a $P \times P$ grid of processors, ideally suited for square matrices distributed across a mesh topology.
 
-1. **Scatter** submatrices of size $\frac{N}{\sqrt{P}}$ to a grid of $\( P \times P \)$ processors.
+1. **Scatter** submatrices of size $\frac{N}{\sqrt{P}}$ to a grid of $\( \sqrt{P} \times \sqrt{P} \)$ processors.
 
 2. **Initial Shifts**:
    - Shift submatrices of matrix $\( A \)$ to the left by one processor in the same row, with wrap-around.
@@ -21,12 +21,12 @@ This project focuses on implementing and analyzing two parallel algorithms for m
 
 **Fox Algorithm:** An alternative approach for matrix multiplication on a mesh grid of processors. The Fox Algorithm is particularly suited for matrices distributed across a square grid and leverages a broadcast mechanism to optimize computation steps in parallel environments.
 
-1. **Scatter** submatrices of $\( B \)$ with size $\( \frac{N}{\sqrt{P}} \)$ to a grid of $\( P \times P \)$ processors.
+1. **Scatter** submatrices of $\( B \)$ with size $\( \frac{N}{\sqrt{P}} \)$ to a grid of $\( \sqrt{P} \times \sqrt{P} \)$ processors.
 
 2. **Iteration over Stages**:
    - For diagonal stage \( k = 0, 1, \dots, \sqrt{P} - 1 \):
      - **Broadcast Step**: 
-       - The main diagonal processor on $row \( i \)$ receives row $\( i \)$ of the $\( k \)$-th diagonal submatrix of $\( A \)$, then broadcasts that submatrix to all processors in that row.
+       - The main diagonal processor on $row_\( i \)$ receives $row_\( i \)$ of the $\( k \)$-th diagonal submatrix of $\( A \)$, then broadcasts that submatrix to all processors in that row.
      - **Local Multiplication**:
        - Each processor performs local matrix multiplication between the received submatrix of $\( A \)$ and its submatrix of $\( B \)$.
      - **Shift Step**:
