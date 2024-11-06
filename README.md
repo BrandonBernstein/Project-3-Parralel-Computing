@@ -5,32 +5,32 @@ This project focuses on implementing and analyzing two parallel algorithms for m
 
 ## Algorithms
 
-**Cannon’s Algorithm:** A parallel matrix multiplication method designed for use on a \( P \times P \) grid of processors, ideally suited for square matrices distributed across a mesh topology.
+**Cannon’s Algorithm:** A parallel matrix multiplication method designed for use on a $P \times P$ grid of processors, ideally suited for square matrices distributed across a mesh topology.
 
-1. **Scatter** submatrices of size \( \frac{N}{\sqrt{P}} \) to a grid of \( P \times P \) processors.
+1. **Scatter** submatrices of size $\frac{N}{\sqrt{P}}$ to a grid of $\( P \times P \)$ processors.
 
 2. **Initial Shifts**:
-   - Shift submatrices of matrix \( A \) to the left by one processor in the same row, with wrap-around.
-   - Similarly, shift submatrices of matrix \( B \) up by one processor in the same column, with wrap-around.
+   - Shift submatrices of matrix $\( A \)$ to the left by one processor in the same row, with wrap-around.
+   - Similarly, shift submatrices of matrix $\( B \)$ up by one processor in the same column, with wrap-around.
 
 3. **Multiplication and Shifting**:
-   - For \( \sqrt{P} \) stages, perform matrix multiplication between submatrices on each processor.
-   - After each multiplication, shift submatrices of \( A \) left by one processor and submatrices of \( B \) up by one processor, both with wrap-around.
+   - Perform matrix multiplication between submatrices on each processor for $\( \sqrt{P} \)$ stages.
+   - After each multiplication, shift submatrices of $\( A \)$ left by one processor and submatrices of $\( B \) $up by one processor, both with wrap-around.
 
 4. **Gather** results from all processors to form the final product matrix.
 
 **Fox Algorithm:** An alternative approach for matrix multiplication on a mesh grid of processors. The Fox Algorithm is particularly suited for matrices distributed across a square grid and leverages a broadcast mechanism to optimize computation steps in parallel environments.
 
-1. **Scatter** submatrices of \( B \) with size \( \frac{N}{\sqrt{P}} \) to a grid of \( P \times P \) processors.
+1. **Scatter** submatrices of $\( B \)$ with size $\( \frac{N}{\sqrt{P}} \)$ to a grid of $\( P \times P \)$ processors.
 
 2. **Iteration over Stages**:
    - For diagonal stage \( k = 0, 1, \dots, \sqrt{P} - 1 \):
      - **Broadcast Step**: 
-       - The main diagonal processor on row \( i \) receives the row \( i \) current \( k \)-th diagonal submatrix of \( A \), then broadcasts that submatrix to all processors in that row.
+       - The main diagonal processor on $row \( i \)$ receives row $\( i \)$ of the $\( k \)$-th diagonal submatrix of $\( A \)$, then broadcasts that submatrix to all processors in that row.
      - **Local Multiplication**:
-       - Each processor performs a local matrix multiplication between the received submatrix of \( A \) and its own submatrix of \( B \).
+       - Each processor performs local matrix multiplication between the received submatrix of $\( A \)$ and its submatrix of $\( B \)$.
      - **Shift Step**:
-       - Each processor shifts its submatrix of \( B \) up by one position in the same column, with wrap-around.
+       - Each processor shifts its submatrix of $\( B \)$ up by one position in the same column, with wrap-around.
 
 3. **Gather** results from all processors to form the final product matrix.
 
