@@ -1,9 +1,11 @@
 # Project 3: Parallel Matrix Multiplication
+
 ## Overview
 This project focuses on implementing and analyzing two parallel algorithms for multiplying large square matrices in parallel: Cannon and Fox. Each algorithm will be briefly described, implemented, and checked for performance on varying matrix and processor sizes.
 
 ## Algorithms
-**Cannons Algorithm:** A parallel matrix multiplication method designed for use on a 𝑃 × 𝑃 grid of processors, ideally suited for square matrices distributed across a mesh topology. 
+
+**Cannon’s Algorithm:** A parallel matrix multiplication method designed for use on a \( P \times P \) grid of processors, ideally suited for square matrices distributed across a mesh topology.
 
 1. **Scatter** submatrices of size \( \frac{N}{\sqrt{P}} \) to a grid of \( P \times P \) processors.
 
@@ -17,22 +19,20 @@ This project focuses on implementing and analyzing two parallel algorithms for m
 
 4. **Gather** results from all processors to form the final product matrix.
 
-
 **Fox Algorithm:** An alternative approach for matrix multiplication on a mesh grid of processors. The Fox Algorithm is particularly suited for matrices distributed across a square grid and leverages a broadcast mechanism to optimize computation steps in parallel environments.
 
-1. **Scatter** submatrices of B with size \( \frac{N}{\sqrt{P}} \) to a grid of \( P \times P \) processors.
+1. **Scatter** submatrices of \( B \) with size \( \frac{N}{\sqrt{P}} \) to a grid of \( P \times P \) processors.
 
 2. **Iteration over Stages**:
    - For diagonal stage \( k = 0, 1, \dots, \sqrt{P} - 1 \):
      - **Broadcast Step**: 
-       - Main diagonal processor on row \( i \) receives the row \( i \) current diagonal submatrix of A, then broadcasts that submatrix to all processors in that row.
+       - The main diagonal processor on row \( i \) receives the row \( i \) current \( k \)-th diagonal submatrix of \( A \), then broadcasts that submatrix to all processors in that row.
      - **Local Multiplication**:
        - Each processor performs a local matrix multiplication between the received submatrix of \( A \) and its own submatrix of \( B \).
      - **Shift Step**:
        - Each processor shifts its submatrix of \( B \) up by one position in the same column, with wrap-around.
 
 3. **Gather** results from all processors to form the final product matrix.
-
 
 
 Describe the matrix multiplication process using Cannon and Fox algorithms.
