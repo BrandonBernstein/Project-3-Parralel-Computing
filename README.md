@@ -41,6 +41,6 @@ You can find Cannon's algorithm in cannon.py and Fox's method in fox.py. The pro
 
 The algorithms were run on processor sizes of 1,4,16, and 64 across matrix sizes (N x N) of 256, 1024, 4096 allowing me to document the following speed up curves.
 
-![Cannon's Algorithm Speed up Curve](https://github.com/BrandonBernstein/Project-3-Parralel-Computing/blob/master/Cannon-Graph.png)
-![Fox Method Speed up Curve](https://github.com/BrandonBernstein/Project-3-Parralel-Computing/blob/master/Fox-Graph.png)
+![Cannon's Algorithm Speed up Curve](https://github.com/BrandonBernstein/Project-3-Parralel-Computing/blob/master/Cannon-Graph.png) ![Fox Method Speed up Curve](https://github.com/BrandonBernstein/Project-3-Parralel-Computing/blob/master/Fox-Graph.png)
+
 
