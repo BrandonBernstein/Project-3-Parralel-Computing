@@ -58,6 +58,9 @@ def fox():
         submatricesA = None
         submatricesB = None
 
+    if rank == 0:
+        print("Reached point 0")
+
     comm.Barrier()
 
     # Distribute B submatrices
@@ -72,6 +75,9 @@ def fox():
         localB = np.empty((blockDim, blockDim), dtype='float64')
         comm.Recv(localB, source=0, tag=1)
 
+    if rank == 0:
+        print("Reached point 2")
+    comm.Barrier()
     # Distribute A submatrices
     submatricesA = comm.bcast(submatricesA, root=0)
     # Fox algorithm main loop
@@ -83,23 +89,20 @@ def fox():
         # Calculate which process is the "root" for this broadcast stage
         root = (row_rank + diag_stage) % procDim
 
-        # Broadcast appropriate submatrix of A
-        if col_rank == root:
-            localA = submatricesA[row_rank * procDim + root]
+        # Take appropriate submatrix of A
+        localA = submatricesA[row_rank * procDim + root]
 
-            cart_comm.Bcast(localA, root=cart_comm.Get_cart_rank([row_rank, root]))
-            # Each process multiplies its local A with local B
-            localC += np.dot(localA, localB)
-
-        else:
-            cart_comm.Bcast(buff_A, root=cart_comm.Get_cart_rank([row_rank, root]))
-            localC += np.dot(buff_A, localB)
+        # Each process multiplies its local A with local B
+        localC += np.dot(localA, localB)
 
         # Shift the submatrix of B up in the column communicator
         up, down = cart_comm.Shift(0, 1)
         cart_comm.Sendrecv_replace(localB, dest=down, sendtag=diag_stage, source=up, recvtag=diag_stage)
 
     # Gather the results back to the root process
+
+    if rank == 0:
+        print("Reached point 3")
 
     globalC = None
     if rank == 0:
@@ -118,6 +121,9 @@ def fox():
         print(f"Time taken on: P = {size}, N = {N} was {end_time - start_time}")
 
 
+    if rank == 0:
+        print(globalC)
+        print(np.dot(A,B))
 
 if __name__ == "__main__":
     fox()
