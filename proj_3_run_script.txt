@@ -1,0 +1,45 @@
+#!/bin/bash
+#
+#SBATCH --job-name=proj3
+#SBATCH --output=project3_out.txt
+#SBATCH --ntasks-per-node=64
+#SBATCH --nodes=1
+#SBATCH --time=4:00:00
+#SBATCH --partition=short-96core
+
+module load gcc/12.1.0
+module load mpi4py/3.0.3
+
+mpirun -np 1 python /gpfs/home/bsbernstein/cannon.py 256
+mpirun -np 1 python /gpfs/home/bsbernstein/cannon.py 1024
+mpirun -np 1 python /gpfs/home/bsbernstein/cannon.py 4096
+
+mpirun -np 4 python /gpfs/home/bsbernstein/cannon.py 256
+mpirun -np 4 python /gpfs/home/bsbernstein/cannon.py 1024
+mpirun -np 4 python /gpfs/home/bsbernstein/cannon.py 4096
+
+mpirun -np 16 python /gpfs/home/bsbernstein/cannon.py 256
+mpirun -np 16 python /gpfs/home/bsbernstein/cannon.py 1024
+mpirun -np 16 python /gpfs/home/bsbernstein/cannon.py 4096
+
+mpirun -np 64 python /gpfs/home/bsbernstein/cannon.py 256
+mpirun -np 64 python /gpfs/home/bsbernstein/cannon.py 1024
+mpirun -np 64 python /gpfs/home/bsbernstein/cannon.py 4096
+
+
+mpirun -np 1 python /gpfs/home/bsbernstein/fox.py 256
+mpirun -np 1 python /gpfs/home/bsbernstein/fox.py 1024
+mpirun -np 1 python /gpfs/home/bsbernstein/fox.py 4096
+
+mpirun -np 4 python /gpfs/home/bsbernstein/fox.py 256
+mpirun -np 4 python /gpfs/home/bsbernstein/fox.py 1024
+mpirun -np 4 python /gpfs/home/bsbernstein/fox.py 4096
+
+mpirun -np 16 python /gpfs/home/bsbernstein/fox.py 256
+mpirun -np 16 python /gpfs/home/bsbernstein/fox.py 1024
+mpirun -np 16 python /gpfs/home/bsbernstein/fox.py 4096
+
+mpirun -np 64 python /gpfs/home/bsbernstein/fox.py 256
+mpirun -np 64 python /gpfs/home/bsbernstein/fox.py 1024
+mpirun -np 64 python /gpfs/home/bsbernstein/fox.py 4096
+
