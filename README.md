@@ -41,6 +41,13 @@ You can find Cannon's algorithm in cannon.py and Fox's method in fox.py. The pro
 
 The algorithms were run on processor sizes of 1,4,16, and 64 across matrix sizes (N x N) of 256, 1024, 4096 allowing me to document the following speed up curves.
 
-![Cannon's Algorithm Speed up Curve](https://github.com/BrandonBernstein/Project-3-Parralel-Computing/blob/master/Cannon-Graph.png) ![Fox Method Speed up Curve](https://github.com/BrandonBernstein/Project-3-Parralel-Computing/blob/master/Fox-Graph.png)
+![Cannon's Algorithm Speed up Curve](https://github.com/BrandonBernstein/Project-3-Parralel-Computing/blob/master/Cannon-Graph.png) 
+![Fox Method Speed up Curve](https://github.com/BrandonBernstein/Project-3-Parralel-Computing/blob/master/Fox-Graph.png)
 
+For Cannon's method, the communication cost is notably high. When N=256, parallelizing the matrix multiplication appears to be of no benefit. When N increases to 1024 and 4096, we do see a speed-up peak at P = 4. Beyond that, the communication cost outweighs any speed-up through parallelized computation.
 
+Fox's method has similar results, where there is some slight benefit at P = 16 for N = 256 to speed up computation giving a speed multiple of 2. However, this may be due to randomness. For N = 1028 we do see a 1-1 increase in speed from P = 1 to P = 4, but then a massive decrease as communication costs get too high. Speedup on N = 4096 shows something similar with a peak speedup at P = 4 followed by a slight decrease at P = 16 due to communication cost.
+
+In general, we observe sweet spots for different combinations of P and N. There is some randomness and speedup curves may have residual errors due to numpy's python overhead, but in general we see consistency with results.
+
+Thanks for reading!
