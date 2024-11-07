@@ -34,75 +34,8 @@ This project focuses on implementing and analyzing two parallel algorithms for m
 
 3. **Gather** results from all processors to form the final product matrix.
 
-
-Describe the matrix multiplication process using Cannon and Fox algorithms.
-Implement both algorithms using mpi4py for parallel computing.
-Test the performance of each algorithm on a parallel computer, varying:
-Matrix sizes 
-𝑁
-=
-2
-8
-,
-2
-10
-,
-2
-12
-N=2 
-8
- ,2 
-10
- ,2 
-12
- 
-Number of CPU cores 
-𝑃
-=
-2
-2
-,
-2
-4
-,
-2
-6
-P=2 
-2
- ,2 
-4
- ,2 
-6
- 
-Collect and Analyze the timing results across different configurations.
-Plot the speedup curves to visualize the performance improvements as the number of cores increases.
-Comment on the performance results and discuss findings.
-Implementation
-The project uses mpi4py for parallel computing and leverages Python’s random number generator to create matrices with entries in the range 
-[
-−
-1
-,
-1
-]
-[−1,1]. Both algorithms have been implemented to take advantage of parallel processing for efficient matrix multiplication.
-
-Files
-cannon.py: Contains the implementation of Cannon's Algorithm.
-fox.py: Contains the implementation of Fox Algorithm.
-generate_matrices.py: Script to generate random matrices of specified sizes.
-performance_tests.py: Runs the matrix multiplication for specified matrix sizes and core counts, and gathers performance data.
-plot_speedup.py: Generates speedup plots based on collected performance data.
-Usage
-Generate matrices: Run generate_matrices.py to create matrices with random entries in the range 
-[
-−
-1
-,
-1
-]
-[−1,1].
-Run algorithms:
+## Implementations
+You can find Cannon's algorithm in cannon.py and Fox's method in fox.py. The following commands can be run 
 Cannon’s Algorithm: mpiexec -n <num_cores> python cannon.py
 Fox Algorithm: mpiexec -n <num_cores> python fox.py
 Performance tests: Run performance_tests.py to automatically benchmark both algorithms for different matrix sizes and core counts.
