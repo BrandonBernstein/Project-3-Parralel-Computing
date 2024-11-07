@@ -35,16 +35,12 @@ This project focuses on implementing and analyzing two parallel algorithms for m
 3. **Gather** results from all processors to form the final product matrix.
 
 ## Implementations
-You can find Cannon's algorithm in cannon.py and Fox's method in fox.py. The following commands can be run 
-Cannon’s Algorithm: mpiexec -n <num_cores> python cannon.py
-Fox Algorithm: mpiexec -n <num_cores> python fox.py
-Performance tests: Run performance_tests.py to automatically benchmark both algorithms for different matrix sizes and core counts.
-Plot results: Use plot_speedup.py to create plots of speedup versus number of cores.
-Results
-The results section will analyze:
+You can find Cannon's algorithm in cannon.py and Fox's method in fox.py. The proj3_run_script.txt contains the batch file used on seawulf, using the general run commands below:
+   - Cannon’s Algorithm: mpirun -np <num_cores> python cannon.py <N>
+   - Fox Algorithm: mpirun -np <num_cores> python fox.py <N>
 
-Execution Time: The time taken by each algorithm for different matrix sizes and core counts.
-Speedup: The performance improvement observed as the number of cores increases.
-Scalability: Insights into how each algorithm scales with matrix size and core count.
-Conclusions
-Based on the results, this project will conclude with observations on the relative performance of Cannon and Fox algorithms. The analysis will highlight the effectiveness of each algorithm under varying conditions and recommend optimal scenarios for their use in parallel matrix multiplication.
+The algorithms were run on processor sizes of 1,4,16, and 64 across matrix sizes (N x N) of 256, 1024, 4096 allowing me to document the following speed up curves.
+
+![Cannon's Algorithm Speed up Curve](https://github.com/BrandonBernstein/Project-3-Parralel-Computing/blob/master/Cannon-Graph.png)
+![Fox Method Speed up Curve](https://github.com/BrandonBernstein/Project-3-Parralel-Computing/blob/master/Fox-Graph.png)
+
