@@ -36,8 +36,8 @@ This project focuses on implementing and analyzing two parallel algorithms for m
 
 ## Implementations
 You can find Cannon's algorithm in cannon.py and Fox's method in fox.py. The proj3_run_script.txt contains the batch file used on seawulf, using the general run commands below:
-   - Cannon’s Algorithm: mpirun -np <num_cores> python cannon.py <N>
-   - Fox Algorithm: mpirun -np <num_cores> python fox.py <N>
+   - Cannon’s Algorithm: mpirun -np <num_cores> python cannon.py N
+   - Fox Algorithm: mpirun -np <num_cores> python fox.py N
 
 The algorithms were run on processor sizes of 1,4,16, and 64 across matrix sizes (N x N) of 256, 1024, 4096 allowing me to document the following speed up curves.
 
