@@ -39,6 +39,8 @@ You can find Cannon's algorithm in cannon.py and Fox's method in fox.py. The pro
    - Cannon’s Algorithm: mpirun -np <num_cores> python cannon.py N
    - Fox Algorithm: mpirun -np <num_cores> python fox.py N
 
+My design relies on MPI creating a cartesian setup for the processors. This allows for easy tracking of processor locations and shifting of said processors. For matrices that need to be scattered, I utilize the send and recv method over contiguous submatrices. Once coordinates are marked, then I follow the psuedo steps of the algorithm steps mentioned above. For the fox algorithm due to difficulty, matrix A is broadcasted to the main diagonal, which then broadcasts the correct submatrix to the corresponding row on the diagonal stage.
+
 The algorithms were run on processor sizes of 1,4,16, and 64 across matrix sizes (N x N) of 256, 1024, 4096 allowing me to document the following speed up curves.
 
 ![Cannon's Algorithm Speed up Curve](https://github.com/BrandonBernstein/Project-3-Parralel-Computing/blob/master/Cannon-Graph.png) 
