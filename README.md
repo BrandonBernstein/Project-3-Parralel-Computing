@@ -15,7 +15,7 @@ This project focuses on implementing and analyzing two parallel algorithms for m
 
 3. **Multiplication and Shifting**:
    - Perform matrix multiplication between submatrices on each processor for $\( \sqrt{P} \)$ stages.
-   - After each multiplication, shift submatrices of $\( A \)$ left by one processor and submatrices of $\( B \) $up by one processor, both with wrap-around.
+   - After each multiplication, shift submatrices of $\( A \)$ left by one processor and submatrices of $\( B \)$ up by one processor, both with wrap-around.
 
 4. **Gather** results from all processors to form the final product matrix.
 
